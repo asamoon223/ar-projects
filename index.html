@@ -2,54 +2,35 @@
 <html>
   <head>
     <title>AR Test</title>
-    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden;">
-
-    <a-scene
-      embedded
-      vr-mode-ui="enabled: false"
-      arjs="sourceType: webcam; debugUIEnabled: true;"
-    >
-      <!-- Marker -->
-      <a-marker
-        type="pattern"
-        url="https://raw.githubusercontent.com/asamoon223/ar-projects/main/pattern-AMH-Trigger.patt"
-      >
-        <!-- Simple debug box -->
-        <a-box position="0 0.5 0" material="color: red;"></a-box>
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: true">
+      <a-marker type="pattern" url="https://raw.githack.com/asamoon223/ar-projects/main/pattern-AMH-Trigger.patt">
+        <!-- Debug box -->
+        <a-box position="0 0.5 0" material="color: red"></a-box>
 
         <!-- GLB model -->
         <a-gltf-model
           id="myModel"
           src="https://raw.githubusercontent.com/asamoon223/ar-projects/main/model.glb"
-          animation-mixer="clip: Take 001"
+          animation-mixer
           scale="0.5 0.5 0.5"
-          position="0 0 0"
-        ></a-gltf-model>
+          position="0 0 0">
+        </a-gltf-model>
       </a-marker>
 
-      <!-- Camera -->
       <a-entity camera></a-entity>
     </a-scene>
 
     <script>
-      // Confirm the GLB loads
       const model = document.querySelector('#myModel');
-      model.addEventListener('model-loaded', () => {
-        console.log('GLB loaded!');
-      });
+      model.addEventListener('model-loaded', () => console.log('GLB loaded!'));
 
-      // Debug marker detection
       const marker = document.querySelector('a-marker');
-      marker.addEventListener('markerFound', () => {
-        console.log('Marker detected!');
-      });
-      marker.addEventListener('markerLost', () => {
-        console.log('Marker lost!');
-      });
+      marker.addEventListener('markerFound', () => console.log('Marker detected!'));
+      marker.addEventListener('markerLost', () => console.log('Marker lost!'));
     </script>
-
   </body>
 </html>
