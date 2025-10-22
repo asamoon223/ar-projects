@@ -2,45 +2,54 @@
 <html>
   <head>
     <title>AR Test</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
-    <style>
-      body { margin: 0; overflow: hidden; }
-    </style>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@4.0.1/aframe/build/aframe-ar.js"></script>
   </head>
-  <body>
+  <body style="margin: 0; overflow: hidden;">
+
     <a-scene
-      vr-mode-ui="enabled: false"
       embedded
-      arjs="sourceType: webcam; debugUIEnabled: true;"
+      vr-mode-ui="enabled: false"
+      arjs="sourceType: webcam; debugUIEnabled: true; detectionMode: mono_and_matrix;"
     >
       <!-- Marker -->
       <a-marker
         type="pattern"
-        url="https://raw.githack.com/asamoon223/ar-projects/main/pattern-AMH-Trigger.patt"
+        url="https://raw.githubusercontent.com/asamoon223/ar-projects/main/pattern-AMH-Trigger.patt"
       >
-        <!-- Test Box -->
-        <a-box position="0 0.5 0" material="color: red"></a-box>
+        <!-- Simple debug box -->
+        <a-box position="0 0.5 0" material="color: red;"></a-box>
 
-        <!-- Your GLB Model -->
+        <!-- GLB model -->
         <a-gltf-model
           id="myModel"
           src="https://raw.githubusercontent.com/asamoon223/ar-projects/main/model.glb"
+          animation-mixer="clip: Take 001"
           scale="0.5 0.5 0.5"
           position="0 0 0"
-          animation-mixer
         ></a-gltf-model>
       </a-marker>
 
       <!-- Camera -->
-      <a-entity camera></a-entity>
+      <a-camera fov="60"></a-camera>
     </a-scene>
 
     <script>
+      // Confirm the GLB loads
       const model = document.querySelector('#myModel');
       model.addEventListener('model-loaded', () => {
         console.log('GLB loaded!');
       });
+
+      // Optional: debug marker visibility
+      const marker = document.querySelector('a-marker');
+      marker.addEventListener('markerFound', () => {
+        console.log('Marker detected!');
+      });
+      marker.addEventListener('markerLost', () => {
+        console.log('Marker lost!');
+      });
     </script>
+
   </body>
 </html>
