@@ -3,14 +3,14 @@
   <head>
     <title>AR Test</title>
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@4.0.1/aframe/build/aframe-ar.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden;">
 
     <a-scene
       embedded
       vr-mode-ui="enabled: false"
-      arjs="sourceType: webcam; debugUIEnabled: true; detectionMode: mono_and_matrix;"
+      arjs="sourceType: webcam; debugUIEnabled: true;"
     >
       <!-- Marker -->
       <a-marker
@@ -30,9 +30,9 @@
         ></a-gltf-model>
       </a-marker>
 
-  <!-- Camera -->
-  <a-camera></a-camera>
-</a-scene>
+      <!-- Camera -->
+      <a-entity camera></a-entity>
+    </a-scene>
 
     <script>
       // Confirm the GLB loads
@@ -41,7 +41,7 @@
         console.log('GLB loaded!');
       });
 
-      // Optional: debug marker visibility
+      // Debug marker detection
       const marker = document.querySelector('a-marker');
       marker.addEventListener('markerFound', () => {
         console.log('Marker detected!');
