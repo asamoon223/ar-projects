@@ -8,8 +8,10 @@
   
   <body style="margin: 0; overflow: hidden;">
     <a-scene arjs="sourceType: webcam; debugUIEnabled: true; trackingMethod: best" vr-mode-ui="enabled: false">
+    
     <a-marker type="pattern" url="https://raw.githubusercontent.com/asamoon223/ar-projects/main/pattern-AMH-Trigger.patt">
-        <a-box position="0 0.5 0" material="color: red"></a-box>
+       
+      <a-box position="0 0.5 0" material="color: red"></a-box>
       
         <a-gltf-model
           id="myModel"
@@ -20,12 +22,16 @@
         </a-gltf-model>
     </a-marker>
 
-    <a-camera rotation-reader><a-camera fov="60"></a-camera>
+    <a-camera fov="60"></a-camera>
     </a-scene>
     
     <script>
       const model = document.querySelector('#myModel');
       model.addEventListener('model-loaded', () => { console.log('GLB loaded!'); });
+      
+      const marker = document.querySelector('#marker');
+      marker.addEventListener('markerFound', () => console.log('Marker detected!'));
+      marker.addEventListener('markerLost', () => console.log('Marker lost.'));
     </script>
     
   </body>
