@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AR.js Hiro Marker Test</title>
-
+    <title>AR Test</title>
+    
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
   </head>
 
   <body style="margin: 0; overflow: hidden;">
-     <a-scene arjs="sourceType: webcam; debugUIEnabled: true; trackingMethod: best" vr-mode-ui="enabled: false">
-      <a-marker preset="hiro">
+    <a-scene arjs="sourceType: webcam; debugUIEnabled: true; trackingMethod: best" vr-mode-ui="enabled: false">  
+    <a-marker type="pattern" url="https://raw.githubusercontent.com/asamoon223/ar-projects/main/pattern-AMH-Trigger.patt" minConfidence="0.5">
        
-      <a-box position="0 0.5 0" material="color: red"></a-box>
-  
+        <a-box position="0 0.5 0" material="color: red;"></a-box>
+
         <a-gltf-model
           id="myModel"
           src="https://raw.githubusercontent.com/asamoon223/ar-projects/main/model.glb"
@@ -27,13 +27,10 @@
 
     <script>
       const model = document.querySelector('#myModel');
-      model.addEventListener('model-loaded', () => { console.log('GLB loaded!'); });
-      
-      const marker = document.querySelector('a-marker');
-      marker.addEventListener('markerFound', () => console.log('Marker detected!'));
-      marker.addEventListener('markerLost', () => console.log('Marker lost!'));
+      model.addEventListener('model-loaded', () => 
+        {
+        console.log('GLB loaded!');
+        });
     </script>
-    
   </body>
-  
 </html>
