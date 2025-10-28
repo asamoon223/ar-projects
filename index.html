@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>AR Test</title>
-    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
   </head>
   
@@ -22,16 +22,16 @@
         </a-gltf-model>
     </a-marker>
 
-    <a-camera fov="60"></a-camera>
+    <a-entity camera></a-entity>
     </a-scene>
     
     <script>
       const model = document.querySelector('#myModel');
       model.addEventListener('model-loaded', () => { console.log('GLB loaded!'); });
       
-      const marker = document.querySelector('#marker');
+      const marker = document.querySelector('a-marker');
       marker.addEventListener('markerFound', () => console.log('Marker detected!'));
-      marker.addEventListener('markerLost', () => console.log('Marker lost.'));
+      marker.addEventListener('markerLost', () => console.log('Marker lost!'));
     </script>
     
   </body>
